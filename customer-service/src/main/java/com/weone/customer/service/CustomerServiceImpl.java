@@ -1,12 +1,18 @@
 package com.weone.customer.service;
 
-import com.weone.customer.controllers.CustomerRegistrationRequest;
+import com.weone.customer.record.CustomerRegistrationRequest;
 import com.weone.customer.models.Customer;
+import com.weone.customer.record.FraudCheckResponse;
 import com.weone.customer.repository.CustomerRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 @Service
-public record CustomerServiceImpl(CustomerRepository customerRepository) implements CustomerService {
+@AllArgsConstructor
+public class CustomerServiceImpl implements CustomerService {
+    private final CustomerRepository customerRepository;
+    private final RestTemplate restTemplate;
     @Override
     public void registerCustomer(CustomerRegistrationRequest request) {
         //Builder Pattern
@@ -18,7 +24,14 @@ public record CustomerServiceImpl(CustomerRepository customerRepository) impleme
 
         // todo: check if email is valid
         // todo: check if email not taken
-        // todo: store customer in db
-        customerRepository.save(customer);
+        customerRepository.saveAndFlush(customer);
+        // todo: check if fraudster
+        FraudCheckResponse fraudCheckResponse = restTemplate.getForObject(
+                "http://localhost:8081/api/v1/fraud-check/{customerId}",
+                FraudCheckResponse.class, customer.getId()
+                );
+        if(fraudCheckResponse.isFraudster())
+            throw new IllegalStateException("fraudster");
+        // todo: send notification
     }
 }

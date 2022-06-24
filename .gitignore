@@ -1,2 +1,3 @@
 /docker-compose.yml
 /customer-service/src/main/resources/application.yml
+/fraud-service/src/main/resources/application.yml

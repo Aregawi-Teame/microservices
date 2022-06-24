@@ -1,4 +1,4 @@
-package com.weone.customer.controllers;
+package com.weone.customer.record;
 
 public record CustomerRegistrationRequest(String firstName,
                                           String lastName,
