@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="fraud-service" />
         <module name="customer-service" />
+        <module name="eureka-server" />
       </profile>
     </annotationProcessing>
   </component>
