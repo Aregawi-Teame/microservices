@@ -1,0 +1,23 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: notification-service
+  datasource:
+    password: "weone123"
+    url: jdbc:postgresql://localhost:5432/notification
+    username: "weone"
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        show_sql: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    fetch-registry: true #Default is tru the same for next command also
+    register-with-eureka: true

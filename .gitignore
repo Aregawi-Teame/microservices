@@ -2,3 +2,4 @@
 /customer-service/src/main/resources/application.yml
 /fraud-service/src/main/resources/application.yml
 /eureka-server/src/main/resources/application.yml
+/notification-service/src/main/resources/application.yml

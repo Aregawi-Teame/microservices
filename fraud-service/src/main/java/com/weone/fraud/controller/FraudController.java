@@ -1,6 +1,6 @@
 package com.weone.fraud.controller;
 
-import com.weone.fraud.record.FraudCheckResponse;
+import com.weone.clients.fraud.record.FraudCheckResponse;
 import com.weone.fraud.service.FraudCheckService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
